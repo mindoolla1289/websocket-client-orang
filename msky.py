@@ -31,7 +31,7 @@ async def main():
     while True:
         try:
             
-            async with websockets.client.connect("ws://") as websocket:
+            async with websockets.client.connect("ws://195.49.212.61:7575") as websocket:
                 logger.info("Connected to the server")
                 await websocket.send(msg)
                 logger.info("Send message with id to server")
