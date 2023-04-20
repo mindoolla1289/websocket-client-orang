@@ -31,7 +31,7 @@ async def main():
     while True:
         try:
             
-            async with websockets.client.connect("ws://195.49.212.61:7575") as websocket:
+            async with websockets.client.connect("ws://") as websocket:
                 logger.info("Connected to the server")
                 await websocket.send(msg)
                 logger.info("Send message with id to server")
@@ -60,7 +60,8 @@ async def main():
                         
 
                     except websockets.ConnectionClosed:
-                        time.sleep(5)
+                        logger.warning("Disconnected, there some problem with network")
+                        time.sleep(3)
                         continue
         except:
             continue
