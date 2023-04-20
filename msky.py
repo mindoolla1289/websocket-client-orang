@@ -60,10 +60,10 @@ async def main():
                         
 
                     except websockets.ConnectionClosed:
-                        logger.warning("Disconnected, there some problem with network")
-                        time.sleep(3)
                         continue
         except:
+            logger.warning("Disconnected, there some problem with network")
+            time.sleep(3)
             continue
 
 
