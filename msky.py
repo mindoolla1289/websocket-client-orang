@@ -19,6 +19,7 @@ OBJECT_ID = ""
 
 
 os.system(f'gpio mode {PULSE} out')
+
 msg = {"msg_t":"connecting","payload":{
         "id":OBJECT_ID
     }}
