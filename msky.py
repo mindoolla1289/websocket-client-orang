@@ -6,10 +6,6 @@ import time
 import os
 from loguru import logger
 
-# log_loc = f'{os.path.dirname(__file__)}/logs/controller.log'
-# logger.add(log_loc, format='{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}',
-#            level='INFO', rotation='5:00', backtrace=True, colorize=True)
-# logger.info('System started !!!')
 
 # настройки пульса
 PULSE = 5
@@ -19,6 +15,10 @@ PulCost = 10
 
 OBJECT_ID = ""
 
+
+
+
+os.system(f'gpio mode {PULSE} out')
 msg = {"msg_t":"connecting","payload":{
         "id":OBJECT_ID
     }}
@@ -79,6 +79,7 @@ async def pay(amount):
         os.system(f'gpio write {PULSE} 0')
         time.sleep(LowLev)
     os.system(f'gpio write {PULSE} 0')
+    amount = 0
 
 
     
