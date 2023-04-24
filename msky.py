@@ -56,6 +56,12 @@ async def main():
                             await pay(amount)
                         elif data["msg_t"] == 'test_pay':
                             logger.info("There is new message from server:Test-pay")
+                            payloadU = data['payload']
+                            tAmountS = int(payloadU["amount"]) 
+                            tHighS = int(payloadU["high"])
+                            tLowS = int(payloadU["low"])
+                            tCostPS = int(payloadU["cost"])
+                            await test_pay(tAmountS, tHighS, tLowS,tCostPS);
                         elif data["msg_t"] == 'update':
                             logger.info("There is new message from server:Update")
                             logger.info("But I'm orange client!")
@@ -84,6 +90,16 @@ async def pay(amount):
 
 
     
+async def test_pay(amountT,high,low,costp):
+    for _ in range(amountT//costp):
+        logger.info("in pulss pulss")
+        os.system(f'gpio write {PULSE} 1')
+        time.sleep(high)
+        os.system(f'gpio write {PULSE} 0')
+        time.sleep(low)
+    os.system(f'gpio write {PULSE} 0')
+    amountT = 0
+
 
 if __name__=="__main__":
     asyncio.run(main())
